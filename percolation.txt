@@ -1,5 +1,5 @@
 import java.io.*;
-public class percolationbyquickfind
+public class percolationbyquickfind //this is a main class
 {
     static int A[][]=new int[100][100];
     int num;
