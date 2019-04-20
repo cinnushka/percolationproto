@@ -1,7 +1,7 @@
 import java.io.*;
 public class percolationbyquickfind
 {
-    static int A[][]=new int[100][100];
+    static int A[][]=new int[100][100]; //edit
     int num;
     static int n;
     void open(int a,int b) //opening sites
