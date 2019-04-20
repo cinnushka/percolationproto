@@ -1,0 +1,96 @@
+import java.io.*;
+public class percolationbyquickfind
+{
+    static int A[][]=new int[100][100];
+    int num;
+    static int n;
+    void open(int a,int b) //opening sites
+    {
+        A[a][b]=0;
+    }
+    boolean isopen(int a,int b)
+    {
+     if(A[a][b]==0)
+       return true;
+     return false;
+    }
+    boolean check()
+    {
+        int i;
+        for(i=0;i<n;i++)
+        {
+          if(A[0][i]==0)
+          {
+            boolean tell=checking(0,i);
+            return tell;
+          }
+        }
+        return false;
+    }
+    boolean checking(int a,int b)
+    {
+        if(a==n-1)
+        {
+             return true;
+        }
+        else if(b==n-1)
+        {
+        if(isopen(a,b-1)==true)
+           checking(a,b-1);
+        else if(isopen(a+1,b)==true)
+           checking(a+1,b);
+        }
+        else if(b==0)
+        {
+        if(isopen(a,b+1)==true)
+           checking(a,b+1);
+        else if(isopen(a+1,b)==true)
+           checking(a+1,b); 
+        }
+        else
+        {
+        if(isopen(a,b+1)==true)
+           checking(a,b+1);
+        else if(isopen(a,b-1)==true)
+           checking(a,b-1);
+        else if(isopen(a+1,b)==true)
+           checking(a+1,b);
+        }
+           return false;
+    }
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int i,j,a,b,count=1;
+        System.out.println("Enter the value of n");
+        n=Integer.parseInt(br.readLine());
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                A[i][j]=count;
+                count++;
+            }
+        }
+        System.out.println("Enter row and column of site to be open");
+        a=Integer.parseInt(br.readLine());
+        b=Integer.parseInt(br.readLine());
+        percolationbyquickfind obj=new percolationbyquickfind();
+        obj.open(a,b);
+        while(obj.check()!=true)
+        {
+           a=Integer.parseInt(br.readLine());
+           b=Integer.parseInt(br.readLine());
+           a=Integer.parseInt(br.readLine());
+           b=Integer.parseInt(br.readLine());
+           obj.open(a,b); 
+        }
+           for(i=0;i<n;i++)
+          {
+            for(j=0;j<n;j++)
+            {
+                System.out.println(A[i][j]);
+            }
+          }  
+    }
+}
